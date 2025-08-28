@@ -1,6 +1,8 @@
 pacman = document.querySelector(".pacman")
 console.log(pacman)
 
+pellet = document.querySelector(".pellet")
+
 
 let windowWidth = window.innerWidth
 let windowHeight = window.innerHeight
@@ -19,6 +21,8 @@ let pacmanHeight = 50
 let rotation = 0
 
 pacman.style.transform = `rotate(${rotation}deg)`
+
+
 
 document.addEventListener("keydown", function(event) {
     console.log(event.key); // This will log the key you press

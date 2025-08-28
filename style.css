@@ -28,3 +28,17 @@
     
 }
 
+.pellet{
+    background-color: lightblue;
+    border: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 8px;
+    position:absolute;
+
+    top: 450px;
+    left: 200px;
+
+
+}
+
