@@ -16,6 +16,10 @@ pacman.style.top = y + "px";
 let pacmanWidth =  50
 let pacmanHeight = 50
 
+let rotation = 0
+
+pacman.style.transform = `rotate(${rotation}deg)`
+
 document.addEventListener("keydown", function(event) {
     console.log(event.key); // This will log the key you press
 
@@ -24,20 +28,41 @@ document.addEventListener("keydown", function(event) {
     switch (event.key) {
         case "ArrowDown":
             if (y < windowHeight - pacmanHeight) {
+                switch (rotation) {
+                    case 0:
+                        rotation = 270
+                        break
+                    case 90:
+                        rotation = 180
+                        break
+                    case 180:
+                        rotation = 270
+                        break
+                    default:
+                        console.log("in progress")
+                }
                 y += step
+            }
+
+            break
+        case "ArrowUp":
+            if (y > 0) {
+                rotation = 90
+                y -= step
+                }
+            
+            
+            break
+        case "ArrowRight":
+            if (x < windowWidth - pacmanWidth) {
+                rotation = 180
+                x += step
             }
             
             break
-        case "ArrowUp":
-            if (y > 0)
-            y -= step
-            break
-        case "ArrowRight":
-            if (x < windowWidth - pacmanWidth)
-            x += step
-            break
         case "ArrowLeft":
             if (x > 0) {
+                rotation = 0
                 x -= step
             break
             }
@@ -48,7 +73,9 @@ document.addEventListener("keydown", function(event) {
 
     pacman.style.left = x + "px";
     pacman.style.top = y + "px";
+    pacman.style.transform = `rotate(${rotation}deg)`
 });
+
 
 
 
