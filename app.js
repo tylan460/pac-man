@@ -4,7 +4,8 @@ console.log(pacman)
 
 let windowWidth = window.innerWidth
 let windowHeight = window.innerHeight
-
+console.log(windowWidth)
+console.log(windowHeight)
 
 let x = 350; // horizontal position
 let y = 300; // vertical position
@@ -12,20 +13,23 @@ let y = 300; // vertical position
 
 pacman.style.left = x + "px";
 pacman.style.top = y + "px";
-let pacmanWidth = 50
+let pacmanWidth =  50
 let pacmanHeight = 50
 
 document.addEventListener("keydown", function(event) {
     console.log(event.key); // This will log the key you press
 
-    let step = 5
+    let step = 15
 
     switch (event.key) {
         case "ArrowDown":
-            y += step
+            if (y < windowHeight - pacmanHeight) {
+                y += step
+            }
+            
             break
         case "ArrowUp":
-            if (y < windowHeight - pacmanHeight)
+            if (y > 0)
             y -= step
             break
         case "ArrowRight":
@@ -44,9 +48,6 @@ document.addEventListener("keydown", function(event) {
 
     pacman.style.left = x + "px";
     pacman.style.top = y + "px";
-
-
-
 });
 
 
