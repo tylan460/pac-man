@@ -1,3 +1,7 @@
+body{
+    background-color: black;
+}
+
 
 .pacman{
     background-color: yellow;
@@ -23,7 +27,7 @@
     height: 0;
     border-top: 25px solid transparent;
     border-bottom: 20px solid transparent;
-    border-left: 25px solid white; /* this is the “mouth” color, can match background */
+    border-left: 25px solid black; /* this is the “mouth” color, can match background */
           
     
 }
@@ -38,6 +42,7 @@
 
     top: 450px;
     left: 200px;
+
 
 
 }
