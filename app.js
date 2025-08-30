@@ -22,12 +22,39 @@ pacman.style.transform = `rotate(${rotation}deg)`
 
 
 
+
+function pelletGeneration() {
+    let pelletCoordinates = []
+    
+
+    for (let i = 0; i < 20; i++) {
+
+        pelletCoordinates.push({x: Math.floor(Math.random() * (windowWidth - 15)), 
+            y: Math.floor(Math.random() * (windowHeight - 15))
+        })
+    }
+
+    let pelletsArray = []
+    for (let i = 0; i < pelletCoordinates.length; i++){
+
+        let pellet = document.createElement("div")
+        pellet.classList.add("pellet")
+        pellet.getBoundingClientRect().width 
+        pellet.style.top = `${pelletCoordinates[i].y}px`
+        pellet.style.left = `${pelletCoordinates[i].x}px`
+        document.body.appendChild(pellet)
+        pelletsArray.push(pellet)
+    }
+    return pelletsArray
+}
+
+
+
+pellets = pelletGeneration(pellet)
+
+
 document.addEventListener("keydown", function(event) {
     let pacmanBox = pacman.getBoundingClientRect();
-    let pelletBox = pellet.getBoundingClientRect()
-
-    console.log(pacmanBox)
-    console.log(pelletBox)
 
     let step = 15
 
@@ -81,25 +108,21 @@ document.addEventListener("keydown", function(event) {
     pacman.style.top = y + "px";
     pacman.style.transform = `rotate(${rotation}deg)`
 
-    if (pacmanBox.left < pelletBox.right &&
-        pacmanBox.right > pelletBox.left &&
-        pacmanBox.top < pelletBox.bottom &&
-        pacmanBox.bottom > pelletBox.top
-    ) {
-        pellet.style.display = "none"
+    for (let i = 0; i < pellets.length; i ++ ) {
+
+        let pelletBox = pellets[i].getBoundingClientRect()
+        if (pacmanBox.left < pelletBox.right &&
+            pacmanBox.right > pelletBox.left &&
+            pacmanBox.top < pelletBox.bottom &&
+            pacmanBox.bottom > pelletBox.top
+        ) {
+            pellets[i].style.display = "none"
+        }
+
     }
 
-    /*
-    ✅ How you should think instead
-    Instead of trying to express “approach from the right side” or “mouth side of Pac-Man,” 
-    you want to think in terms of rectangle overlap in general.
-    Imagine Pac-Man and the pellet as boxes. They collide if:
-    Pac-Man’s left edge is to the left of pellet’s right edge
-    Pac-Man’s right edge is to the right of pellet’s left edge
-    Pac-Man’s top edge is above pellet’s bottom edge
-    Pac-Man’s bottom edge is below pellet’s top edge
+    
 
-    */
 });
 
 
